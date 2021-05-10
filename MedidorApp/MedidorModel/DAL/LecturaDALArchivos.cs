@@ -39,7 +39,6 @@ namespace MedidorModel.DAL
         public List<Lectura> GetAll()
         {
             List<Lectura> lista = new List<Lectura>();
-
             //Puede fallar la estructura del archivo, usamos trycatch
             try
             {
@@ -50,22 +49,24 @@ namespace MedidorModel.DAL
                     string linea = null;
                     do
                     {
+                        //indicamos que lea la linea
+                        linea = reader.ReadLine();
                         //que se ejecute mientras linea =! nulo
                         if (linea != null)
                         {
                             //En la lectura, leer la separacion 
-                            string[] textoArray = linea.Split('|');
+                            string[] textoArray = linea.Split('-');
 
                             Lectura l = new Lectura()
                             {
                                 //Fecha posicion 0
-                                Fecha = textoArray[0],
+                                Fecha = Convert.ToDateTime(textoArray[0]),
 
                                 //Valor posicion 1
                                 Valor = textoArray[1],
 
                                 //Tipo posicion 2
-                                Tipo = textoArray[2],
+                                Tipo = Convert.ToInt32(textoArray[2]),
 
                                 //UnidadMedida posicion 3
                                 UnidadMedida = textoArray[3]

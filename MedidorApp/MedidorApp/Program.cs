@@ -1,31 +1,30 @@
-﻿using MedidorModel.DAL;
+﻿using MedidorApp.Hilos;
+using MedidorModel.DAL;
 using MedidorModel.DTO;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace MedidorApp
 {
-    class Program
+    public partial class Program
     {
-
-        //1.Probaremos con una lectura de prueba
-        static ILecturaDAL dal = LecturaDALFactory.CreateDAL();
         static void Main(string[] args)
         {
+            Console.WriteLine("Iniciando hilo del Server");
+            int puerto = int.Parse(ConfigurationManager.AppSettings["puerto"]);
+            HiloServer hiloServer = new HiloServer(puerto);
+            Thread t = new Thread(new ThreadStart(hiloServer.Ejecutar));
 
-            //2. Probaremos con una lectura de prueba
-            Lectura l = new Lectura()
-            {
-                Fecha = DateTime.Now.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss"),
-                Valor = "123",
-                Tipo = 1,
-                UnidadMedida = "123"
-            };
-            dal.Save(l);
+            //Cambiamo prioridad
+            t.IsBackground = true;
 
+            t.Start();
+            while (Menu());
         }
     }
 }

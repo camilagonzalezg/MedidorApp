@@ -34,6 +34,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -43,6 +44,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Hilos\HiloCliente.cs" />
+    <Compile Include="Hilos\HiloServer.cs" />
+    <Compile Include="Partials\Program.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -53,6 +57,10 @@
     <ProjectReference Include="..\MedidorModel\MedidorModel.csproj">
       <Project>{ada5e570-bc5b-497e-ad92-46f4321936f3}</Project>
       <Name>MedidorModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SocketsUtils\SocketsUtils.csproj">
+      <Project>{50923F24-1863-407B-930B-75B06C0A2006}</Project>
+      <Name>SocketsUtils</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

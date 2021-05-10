@@ -37,9 +37,14 @@ namespace MedidorModel.DTO
             }
         }
 
-        public override string ToString()
+        public bool enviarLectura()
         {
-            return Id + ";" + FechaInstalacion;
+            //if ()
+            //{
+                return true;
+            //} else {
+            //return false;
+            //}
         }
     }
 }

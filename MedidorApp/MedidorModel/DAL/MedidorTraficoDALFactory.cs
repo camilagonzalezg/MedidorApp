@@ -6,7 +6,14 @@ using System.Threading.Tasks;
 
 namespace MedidorModel.DAL
 {
-    class MedidorTraficoDALFactory
+    public class MedidorTraficoDALFactory
     {
+
+        //Metodo estatico
+        public static IMedidorTraficoDAL CreateDAL()
+        {
+            return MedidorTraficoDALArchivos.GetInstance();
+        }
+
     }
 }
