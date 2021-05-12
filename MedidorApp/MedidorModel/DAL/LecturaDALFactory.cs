@@ -9,7 +9,6 @@ namespace MedidorModel.DAL
     //Factoria de objetos de lectura
     public class LecturaDALFactory
     {
-
         //Metodo estatico
         public static ILecturaDAL CreateDAL()
         {

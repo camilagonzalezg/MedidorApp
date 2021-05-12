@@ -8,7 +8,6 @@ namespace MedidorModel.DAL
 {
     public class MedidorTraficoDALFactory
     {
-
         //Metodo estatico
         public static IMedidorTraficoDAL CreateDAL()
         {

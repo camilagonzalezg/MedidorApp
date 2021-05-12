@@ -13,17 +13,17 @@ namespace MedidorApp
         static IMedidorTraficoDAL dal = MedidorTraficoDALFactory.CreateDAL();
 
         //1.Metodo mostrar medidores
-        static void MostrarMedidores()
+        static void MostrarMedidorTrafico()
         {
-            List<MedidorTrafico> medidortrafico = dal.GetAll();
-            medidortrafico.ForEach(l =>
+            List<MedidorTrafico> medidorTrafico = dal.GetAll();
+            medidorTrafico.ForEach(mt =>
             {
                 Console.WriteLine("NroSerie:{0} | Fecha:{1} | Tipo:{2} | Valor:{3} | Estado:{4}",
-                l.NroSerie,
-                l.Fecha,
-                l.Tipo,
-                l.Valor,
-                l.Estado);
+                mt.NroSerie,
+                mt.Fecha,
+                mt.Tipo,
+                mt.Valor,
+                mt.Estado);
             });
         }
 
@@ -31,12 +31,12 @@ namespace MedidorApp
         static bool Menu()
         {
             bool continuar = true;
-            //Console.WriteLine("Presione 1 para ver mensajes");
+            Console.WriteLine("Presione x para ver mensajes");
             string opcion = Console.ReadLine().Trim();
             switch (opcion)
             {
-                case "1":
-                    MostrarMedidores();
+                case "x":
+                    MostrarMedidorTrafico();
                     break;
             }
             return continuar;

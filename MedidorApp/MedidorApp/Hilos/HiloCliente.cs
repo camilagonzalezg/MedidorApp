@@ -142,7 +142,8 @@ namespace MedidorApp.Hilos
                 clienteSocket.Escribir("1 = Punto de Carga lleno");
                 clienteSocket.Escribir("2 = Requiere Mantención preventiva");
                 estado = Convert.ToInt32(clienteSocket.Leer().Trim());
-            } while (estado < -1 || estado > 2);
+
+            } while (estado < -1 && estado > 2);
 
             //Crear objeto medidor trafico
             MedidorTrafico mt = new MedidorTrafico();
