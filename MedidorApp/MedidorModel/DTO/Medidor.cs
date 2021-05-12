@@ -8,32 +8,74 @@ namespace MedidorModel.DTO
 {
     public class Medidor
     {
-        private int id;
-        private DateTime fechaInstalacion;
+        private int nroSerie;
+        private DateTime fecha;
+        private int tipo;
+        private int valor;
+        private int estado;
 
-        public int Id
+        public int NroSerie
         {
             get
             {
-                return id;
+                return nroSerie;
             }
 
             set
             {
-                id = value;
+                nroSerie = value;
             }
         }
 
-        public DateTime FechaInstalacion
+        public DateTime Fecha
         {
             get
             {
-                return fechaInstalacion;
+                return fecha;
             }
 
             set
             {
-                fechaInstalacion = value;
+                fecha = value;
+            }
+        }
+
+        public int Tipo
+        {
+            get
+            {
+                return tipo;
+            }
+
+            set
+            {
+                tipo = value;
+            }
+        }
+
+        public int Valor
+        {
+            get
+            {
+                return valor;
+            }
+
+            set
+            {
+                valor = value;
+            }
+        }
+
+        public int Estado
+        {
+            get
+            {
+                return estado;
+            }
+
+            set
+            {
+                estado = value;
             }
         }
 

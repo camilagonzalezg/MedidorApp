@@ -10,25 +10,20 @@ namespace MedidorApp
 {
     public partial class Program
     {
-        static ILecturaDAL dal = LecturaDALFactory.CreateDAL();
+        static IMedidorTraficoDAL dal = MedidorTraficoDALFactory.CreateDAL();
 
-        //1.Metodo ingresar lectura
-        static void IngresarLectura()
+        //1.Metodo mostrar medidores
+        static void MostrarMedidores()
         {
-
-        }
-
-        //2.Metodo mostrar lectura
-        static void MostrarLecturas()
-        {
-            List<Lectura> lecturas = dal.GetAll();
-            lecturas.ForEach(l =>
+            List<MedidorTrafico> medidortrafico = dal.GetAll();
+            medidortrafico.ForEach(l =>
             {
-                Console.WriteLine("Fecha:{0} | Valor:{1} | Tipo:{2} | Unidad Medida:{3}",
+                Console.WriteLine("NroSerie:{0} | Fecha:{1} | Tipo:{2} | Valor:{3} | Estado:{4}",
+                l.NroSerie,
                 l.Fecha,
-                l.Valor,
                 l.Tipo,
-                l.UnidadMedida);
+                l.Valor,
+                l.Estado);
             });
         }
 
@@ -36,9 +31,14 @@ namespace MedidorApp
         static bool Menu()
         {
             bool continuar = true;
-            Console.WriteLine("*****MEDIDOR APP*****");
-            Console.WriteLine("Recibiendo lectura de clientes (fecha | nro_medidor | tipo)");
-            Console.WriteLine("...");
+            //Console.WriteLine("Presione 1 para ver mensajes");
+            string opcion = Console.ReadLine().Trim();
+            switch (opcion)
+            {
+                case "1":
+                    MostrarMedidores();
+                    break;
+            }
             return continuar;
         }
 

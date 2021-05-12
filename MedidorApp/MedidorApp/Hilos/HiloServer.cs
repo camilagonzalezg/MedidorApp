@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace MedidorApp.Hilos
@@ -30,7 +31,10 @@ namespace MedidorApp.Hilos
                     Console.WriteLine("Esperando Clientes...");
                     ClienteSocket cliente = this.server.ObtenerCliente();
                     //Crear una instancia del hilo del Cliente
-
+                    HiloCliente hiloCliente = new HiloCliente(cliente);
+                    Thread t = new Thread(new ThreadStart(hiloCliente.Ejecutar));
+                    t.IsBackground = false;
+                    t.Start();
                 }
             }
 
