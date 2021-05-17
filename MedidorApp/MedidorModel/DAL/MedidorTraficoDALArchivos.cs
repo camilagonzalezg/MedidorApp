@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MedidorModel.DTO;
-
+using System.Globalization;
 
 namespace MedidorModel.DAL
 {
@@ -50,19 +50,20 @@ namespace MedidorModel.DAL
                             MedidorTrafico mt = new MedidorTrafico()
                             {
                                 //NroSerie posicion 0
-                                NroSerie = textoArray[0],
+                                NroSerie = Convert.ToInt32(textoArray[0]),
 
                                 //Fecha posicion 1
-                                Fecha = textoArray[1],
+                                //Fecha = Convert.ToDateTime(textoArray[1], CultureInfo.InvariantCulture),
+                                Fecha = DateTime.ParseExact(textoArray[1], "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture),
 
                                 //Tipo posicion 2
-                                Tipo = textoArray[2],
+                                Tipo = Convert.ToInt32(textoArray[2]),
 
                                 //Valor posicion 3
-                                Valor = textoArray[3],
+                                Valor = Convert.ToInt32(textoArray[3]),
 
                                 //Estado posicion 4
-                                Estado = textoArray[4]
+                                Estado = Convert.ToInt32(textoArray[4])
                             };
                             lista.Add(mt);
                         }
