@@ -61,7 +61,9 @@ namespace MedidorApp.Hilos
             do
             {
                 clienteSocket.Escribir("Ingrese fecha:");
-                fecha = Convert.ToDateTime(clienteSocket.Leer().Trim());
+                fecha = DateTime.ParseExact(clienteSocket.Leer(), "yyyy-MM-dd HH:mm:ss",
+                CultureInfo.InvariantCulture);
+
             } while (fecha == null);
 
             //3.Ingresar tipo medidor consumo

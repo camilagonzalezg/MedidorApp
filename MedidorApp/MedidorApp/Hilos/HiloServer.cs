@@ -28,7 +28,7 @@ namespace MedidorApp.Hilos
                 Console.WriteLine("Servidor iniciado");
                 while (true)
                 {
-                    Console.WriteLine("Esperando Clientes...");
+                    Console.WriteLine("Esperando Mediciones de clientes...");
                     ClienteSocket cliente = this.server.ObtenerCliente();
                     //Crear una instancia del hilo del Cliente
                     HiloCliente hiloCliente = new HiloCliente(cliente);

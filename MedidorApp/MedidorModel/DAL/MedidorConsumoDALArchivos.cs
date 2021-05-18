@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MedidorModel.DTO;
+using System.Globalization;
 
 namespace MedidorModel.DAL
 {
@@ -70,7 +71,7 @@ namespace MedidorModel.DAL
                                 NroSerie = Convert.ToInt32(textoArray[0]),
 
                                 //Fecha posicion 1
-                                Fecha = Convert.ToDateTime(textoArray[1]),
+                                Fecha = Convert.ToDateTime(textoArray[1], CultureInfo.InvariantCulture),
 
                                 //Tipo posicion 3
                                 Tipo = Convert.ToInt32(textoArray[2]),
