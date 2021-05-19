@@ -47,16 +47,18 @@ namespace MedidorApp
         static bool Menu()
         {
             bool continuar = true;
+            Console.WriteLine(" ");
             Console.WriteLine("Mostrar Mediciones:");
-            Console.WriteLine("0: Medicion Consumo");
-            Console.WriteLine("1: Medicion Trafico");
+            Console.WriteLine("MC: Medicion Consumo");
+            Console.WriteLine("MT: Medicion Trafico");
+            Console.WriteLine(" ");
             string opcion = Console.ReadLine().Trim();
             switch (opcion)
             {
-                case "0":
+                case "MT":
                     MostrarMedidorTrafico();
                     break;
-                case "1":
+                case "MC":
                     MostrarMedidorConsumo();
                     break;
             }

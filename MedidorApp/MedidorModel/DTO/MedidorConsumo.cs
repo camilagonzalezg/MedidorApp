@@ -19,5 +19,10 @@ namespace MedidorModel.DTO
 
         }
 
+        public override string ToString()
+        {
+            return NroSerie + ";" + Fecha + ";" + Tipo + ";" + Valor + ";" + Estado;
+        }
+
     }
 }

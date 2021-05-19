@@ -15,6 +15,7 @@ namespace MedidorApp
     {
         static void Main(string[] args)
         {
+            Console.WriteLine(" ");
             Console.WriteLine("Iniciando hilo del Server");
             int puerto = int.Parse(ConfigurationManager.AppSettings["puerto"]);
             HiloServer hiloServer = new HiloServer(puerto);

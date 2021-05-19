@@ -88,5 +88,6 @@ namespace MedidorModel.DTO
             //return false;
             //}
         }
+
     }
 }

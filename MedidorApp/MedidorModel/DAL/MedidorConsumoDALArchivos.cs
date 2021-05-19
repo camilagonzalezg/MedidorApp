@@ -64,14 +64,14 @@ namespace MedidorModel.DAL
                         linea = reader.ReadLine();
                         if (linea != null)
                         {
-                            string[] textoArray = linea.Split('-');
+                            string[] textoArray = linea.Split(';');
                             MedidorConsumo mc = new MedidorConsumo()
                             {
                                 //NroSerie posicion 0
                                 NroSerie = Convert.ToInt32(textoArray[0]),
 
                                 //Fecha posicion 1
-                                Fecha = Convert.ToDateTime(textoArray[1], CultureInfo.InvariantCulture),
+                                Fecha = DateTime.ParseExact(textoArray[1], "dd/MM/yyyy HH:mm:ss", CultureInfo.InvariantCulture),
 
                                 //Tipo posicion 3
                                 Tipo = Convert.ToInt32(textoArray[2]),

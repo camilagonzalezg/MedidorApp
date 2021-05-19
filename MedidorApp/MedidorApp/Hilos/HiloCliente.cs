@@ -24,7 +24,9 @@ namespace MedidorApp.Hilos
         public void Ejecutar()
         {
             //MENU
+            Console.WriteLine(" ");
             Console.WriteLine("*****MEDIDOR APP*****");
+            Console.WriteLine(" ");
             Console.WriteLine("Ingrese tipo del medidor:");
             Console.WriteLine("0 = Medidor Consumo");
             Console.WriteLine("1 = Medidor Trafico");
@@ -53,7 +55,7 @@ namespace MedidorApp.Hilos
             //1.Ingresar nro serie medidor consumo
             do
             {
-                clienteSocket.Escribir("Ingrese número de serie del medidor de consumo:");
+                clienteSocket.Escribir("Ingrese numero de serie del medidor de consumo:");
                 nroSerie = Convert.ToInt32(clienteSocket.Leer().Trim());
             } while (nroSerie == null);
 
@@ -83,7 +85,7 @@ namespace MedidorApp.Hilos
                 clienteSocket.Escribir("-1 = Error de lectura");
                 clienteSocket.Escribir("0 = OK");
                 clienteSocket.Escribir("1 = Punto de Carga lleno");
-                clienteSocket.Escribir("2 = Requiere Mantención preventiva");
+                clienteSocket.Escribir("2 = Requiere Mantencion preventiva");
                 estado = Convert.ToInt32(clienteSocket.Leer().Trim());
             } while (estado <-1 || estado > 2);
 
@@ -115,7 +117,7 @@ namespace MedidorApp.Hilos
             //1.Ingresar nro serie medidor trafico
             do
             {
-                clienteSocket.Escribir("Ingrese número de serie del medidor de trafico:");
+                clienteSocket.Escribir("Ingrese numero de serie del medidor de trafico:");
                 nroSerie = Convert.ToInt32(clienteSocket.Leer().Trim());
             } while (nroSerie == null);
 
@@ -144,7 +146,7 @@ namespace MedidorApp.Hilos
                 clienteSocket.Escribir("-1 = Error de lectura");
                 clienteSocket.Escribir("0 = OK");
                 clienteSocket.Escribir("1 = Punto de Carga lleno");
-                clienteSocket.Escribir("2 = Requiere Mantención preventiva");
+                clienteSocket.Escribir("2 = Requiere Mantencion preventiva");
                 estado = Convert.ToInt32(clienteSocket.Leer().Trim());
 
             } while (estado < -1 && estado > 2);

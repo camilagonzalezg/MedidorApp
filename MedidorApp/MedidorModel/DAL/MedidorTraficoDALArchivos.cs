@@ -46,15 +46,14 @@ namespace MedidorModel.DAL
                         linea = reader.ReadLine();
                         if (linea != null)
                         {
-                            string[] textoArray = linea.Split('-');
-
+                            string[] textoArray = linea.Split(';');
                             MedidorTrafico mt = new MedidorTrafico()
                             {
                                 //NroSerie posicion 0
                                 NroSerie = Convert.ToInt32(textoArray[0]),
 
                                 //Fecha posicion 1
-                                Fecha = Convert.ToDateTime(textoArray[1], CultureInfo.InvariantCulture),
+                                Fecha = DateTime.ParseExact(textoArray[1], "dd/MM/yyyy HH:mm:ss", CultureInfo.InvariantCulture),
 
                                 //Tipo posicion 2
                                 Tipo = Convert.ToInt32(textoArray[2]),
