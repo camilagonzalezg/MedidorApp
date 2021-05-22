@@ -15,6 +15,8 @@ namespace MedidorApp.Hilos
         private ClienteSocket clienteSocket;
         private IMedidorConsumoDAL dalMedidorConsumo = MedidorConsumoDALFactory.CreateDAL();
         private IMedidorTraficoDAL dalMedidorTrafico = MedidorTraficoDALFactory.CreateDAL();
+        private ILecturaDAL dalLectura = LecturaDALFactory.CreateDAL();
+
 
         public HiloCliente(ClienteSocket clienteSocket)
         {
@@ -24,42 +26,13 @@ namespace MedidorApp.Hilos
         public void Ejecutar()
         {
             //MENU
-            Console.WriteLine(" ");
-            Console.WriteLine("*****MEDIDOR APP*****");
-            Console.WriteLine(" ");
-            Console.WriteLine("Ingrese tipo del medidor:");
-            Console.WriteLine("0 = Medidor Consumo");
-            Console.WriteLine("1 = Medidor Trafico");
-            string opcion = clienteSocket.Leer().Trim();
+            clienteSocket.Escribir("Colocar FECHA | NUMERO MEDIDOR | TIPO");
 
-            switch (opcion)
-            {
-                case "0":
-                    IngresarDatosMedidorConsumo();
-                    break;
-                case "1":
-                    IngresarDatosMedidorTrafico();
-                    break;
-            }
-        }
-
-        //INGRESAR DATOS MEDIDOR CONSUMO
-        public void IngresarDatosMedidorConsumo()
-        {
-            int nroSerie;
             DateTime fecha;
+            int numero;
             int tipo;
-            int valor;
-            int estado;
 
-            //1.Ingresar nro serie medidor consumo
-            do
-            {
-                clienteSocket.Escribir("Ingrese numero de serie del medidor de consumo:");
-                nroSerie = Convert.ToInt32(clienteSocket.Leer().Trim());
-            } while (nroSerie == null);
-
-            //2.Ingresar fecha medidor consumo
+            //1.Ingresar fecha medicion
             do
             {
                 clienteSocket.Escribir("Ingrese fecha:");
@@ -67,107 +40,35 @@ namespace MedidorApp.Hilos
                 CultureInfo.InvariantCulture);
 
             } while (fecha == null);
+
+            //2.Ingresar numero medidor
+            do
+            {
+                clienteSocket.Escribir("Ingrese numero del medidor:");
+                numero = Convert.ToInt32(clienteSocket.Leer().Trim());
+            } while (numero == null);
 
             //3.Ingresar tipo medidor consumo
-            tipo = 0;
-
-            //4.Ingresar valor medidor consumo
             do
             {
-                clienteSocket.Escribir("Ingrese valor del medidor de consumo:");
-                valor = Convert.ToInt32(clienteSocket.Leer().Trim());
-            } while (valor == null);
+                clienteSocket.Escribir("Ingrese tipo del medidor:");
+                clienteSocket.Escribir("1 = Trafico");
+                clienteSocket.Escribir("0 = Consumo");
+                tipo = Convert.ToInt32(clienteSocket.Leer().Trim());
+            } while (tipo<0 || tipo>1);
 
-            //5.Ingresar estado medidor consumo
-            do
+            //Crear objeto lectura
+            Lectura l = new Lectura();
+            l.Fecha = fecha;
+            l.Numero = numero;
+            l.Tipo = tipo;
+
+            lock (dalLectura)
             {
-                clienteSocket.Escribir("Ingrese estado del medidor de consumo:");
-                clienteSocket.Escribir("-1 = Error de lectura");
-                clienteSocket.Escribir("0 = OK");
-                clienteSocket.Escribir("1 = Punto de Carga lleno");
-                clienteSocket.Escribir("2 = Requiere Mantencion preventiva");
-                estado = Convert.ToInt32(clienteSocket.Leer().Trim());
-            } while (estado <-1 || estado > 2);
-
-            //Crear objeto medidor consumo
-            MedidorConsumo mc = new MedidorConsumo();
-            mc.NroSerie = nroSerie;
-            mc.Fecha = fecha;
-            mc.Tipo = tipo;
-            mc.Valor = valor;
-            mc.Estado = estado;
-
-            lock (dalMedidorConsumo)
-            {
-                dalMedidorConsumo.Save(mc);
+                dalLectura.Save(l);
             }
             clienteSocket.CerrarConexion();
         }
-
-
-        //INGRESAR DATOS MEDIDOR TRAFICO
-        public void IngresarDatosMedidorTrafico()
-        {
-            int nroSerie;
-            DateTime fecha;
-            int tipo;
-            int valor;
-            int estado;
-
-            //1.Ingresar nro serie medidor trafico
-            do
-            {
-                clienteSocket.Escribir("Ingrese numero de serie del medidor de trafico:");
-                nroSerie = Convert.ToInt32(clienteSocket.Leer().Trim());
-            } while (nroSerie == null);
-
-            //2.Ingresar fecha medidor trafico
-            do
-            {
-                clienteSocket.Escribir("Ingrese fecha:");
-                fecha = DateTime.ParseExact(clienteSocket.Leer(), "yyyy-MM-dd HH:mm:ss",
-                CultureInfo.InvariantCulture);
-            } while (fecha == null);
-
-            //3.Ingresar tipo medidor trafico
-            tipo = 1;
-
-            //3.Ingresar valor medidor trafico
-            do
-            {
-                clienteSocket.Escribir("Ingrese valor del medidor de trafico:");
-                valor = Convert.ToInt32(clienteSocket.Leer().Trim());
-            } while (valor == null);
-
-            //4.Ingresar estado medidor trafico
-            do
-            {
-                clienteSocket.Escribir("Ingrese estado del medidor de trafico:");
-                clienteSocket.Escribir("-1 = Error de lectura");
-                clienteSocket.Escribir("0 = OK");
-                clienteSocket.Escribir("1 = Punto de Carga lleno");
-                clienteSocket.Escribir("2 = Requiere Mantencion preventiva");
-                estado = Convert.ToInt32(clienteSocket.Leer().Trim());
-
-            } while (estado < -1 && estado > 2);
-
-            //Crear objeto medidor trafico
-            MedidorTrafico mt = new MedidorTrafico();
-            mt.NroSerie = nroSerie;
-            mt.Fecha = fecha;
-            mt.Tipo = tipo;
-            mt.Valor = valor;
-            mt.Estado = estado;
-
-            lock (dalMedidorTrafico)
-            {
-                dalMedidorTrafico.Save(mt);
-            }
-            clienteSocket.CerrarConexion();
-        }
-
-        
-
-
+    
     }       
 }

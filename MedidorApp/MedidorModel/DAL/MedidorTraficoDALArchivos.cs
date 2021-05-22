@@ -53,8 +53,9 @@ namespace MedidorModel.DAL
                                 NroSerie = Convert.ToInt32(textoArray[0]),
 
                                 //Fecha posicion 1
-                                Fecha = DateTime.ParseExact(textoArray[1], "dd/MM/yyyy HH:mm:ss", CultureInfo.InvariantCulture),
-
+                                Fecha = DateTime.ParseExact(textoArray[1], "dd/MM/yyyy HH:mm:ss",
+                                CultureInfo.InvariantCulture),
+                                
                                 //Tipo posicion 2
                                 Tipo = Convert.ToInt32(textoArray[2]),
 

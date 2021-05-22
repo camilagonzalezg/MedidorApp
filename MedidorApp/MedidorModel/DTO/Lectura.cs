@@ -10,9 +10,10 @@ namespace MedidorModel.DTO
     {
 
         private DateTime fecha;
-        private string valor;
+        //private string valor;
+        private int numero;
         private int tipo;
-        private string unidadMedida;
+        //private string unidadMedida;
 
         public DateTime Fecha
         {
@@ -27,16 +28,29 @@ namespace MedidorModel.DTO
             }
         }
 
-        public string Valor
+        //public string Valor
+        //{
+        //    get
+        //    {
+        //        return valor;
+        //    }
+
+        //    set
+        //    {
+        //        valor = value;
+        //    }
+        //}
+
+        public int Numero
         {
             get
             {
-                return valor;
+                return numero;
             }
 
             set
             {
-                valor = value;
+                numero = value;
             }
         }
 
@@ -53,17 +67,23 @@ namespace MedidorModel.DTO
             }
         }
 
-        public string UnidadMedida
-        {
-            get
-            {
-                return unidadMedida;
-            }
+        //public string UnidadMedida
+        //{
+        //    get
+        //    {
+        //        return unidadMedida;
+        //    }
 
-            set
-            {
-                unidadMedida = value;
-            }
+        //    set
+        //    {
+        //        unidadMedida = value;
+        //    }
+        //}
+
+        public override string ToString()
+        {
+            return Fecha + ";" + Numero + ";" + Tipo;
         }
+
     }
 }

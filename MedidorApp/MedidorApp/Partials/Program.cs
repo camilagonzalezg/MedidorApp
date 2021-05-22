@@ -12,54 +12,43 @@ namespace MedidorApp
     {
         static IMedidorTraficoDAL dalTrafico = MedidorTraficoDALFactory.CreateDAL();
         static IMedidorConsumoDAL dalConsumo = MedidorConsumoDALFactory.CreateDAL();
+        static ILecturaDAL dalLectura = LecturaDALFactory.CreateDAL();
 
         //1.Metodo mostrar medicion de trafico
-        static void MostrarMedidorTrafico()
+        static void MostrarLectura()
         {
-            List<MedidorTrafico> medidorTrafico = dalTrafico.GetAll();
-            medidorTrafico.ForEach(mt =>
+            List<Lectura> lectura = dalLectura.GetAll();
+            lectura.ForEach(l =>
             {
-                Console.WriteLine("NroSerie:{0} | Fecha:{1} | Tipo:{2} | Valor:{3} | Estado:{4}",
-                mt.NroSerie,
-                mt.Fecha,
-                mt.Tipo,
-                mt.Valor,
-                mt.Estado);
+                Console.WriteLine("FECHA:{0} | NUMERO MEDIDOR:{1} | TIPO:{2}",
+                l.Fecha,
+                l.Numero,
+                l.Tipo);
             });
+
         }
 
-        //1.Metodo mostrar medicion de consumo
-        static void MostrarMedidorConsumo()
+        static void Find()
         {
-            List<MedidorConsumo> medidorConsumo = dalConsumo.GetAll();
-            medidorConsumo.ForEach(mc =>
-            {
-                Console.WriteLine("NroSerie:{0} | Fecha:{1} | Tipo:{2} | Valor:{3} | Estado:{4}",
-                mc.NroSerie,
-                mc.Fecha,
-                mc.Tipo,
-                mc.Valor,
-                mc.Estado);
-            });
+            
         }
 
-        //3.Menu
+
+        //1.Pruebas
         static bool Menu()
         {
             bool continuar = true;
             Console.WriteLine(" ");
-            Console.WriteLine("Mostrar Mediciones:");
-            Console.WriteLine("MC: Medicion Consumo");
-            Console.WriteLine("MT: Medicion Trafico");
+            Console.WriteLine("Presione 1 para mostrar lectura");
             Console.WriteLine(" ");
             string opcion = Console.ReadLine().Trim();
             switch (opcion)
             {
-                case "MT":
-                    MostrarMedidorTrafico();
+                case "1":
+                    MostrarLectura();
                     break;
-                case "MC":
-                    MostrarMedidorConsumo();
+                case "2":
+                    Find();
                     break;
             }
             return continuar;

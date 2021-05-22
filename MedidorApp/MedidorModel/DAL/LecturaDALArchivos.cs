@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MedidorModel.DTO;
 using System.IO;
+using System.Globalization;
 
 namespace MedidorModel.DAL
 {
@@ -55,21 +56,20 @@ namespace MedidorModel.DAL
                         if (linea != null)
                         {
                             //En la lectura, leer la separacion 
-                            string[] textoArray = linea.Split('-');
+                            string[] textoArray = linea.Split(';');
 
                             Lectura l = new Lectura()
                             {
                                 //Fecha posicion 0
-                                Fecha = Convert.ToDateTime(textoArray[0]),
+                                Fecha = DateTime.ParseExact(textoArray[0], "dd/MM/yyyy HH:mm:ss", 
+                                CultureInfo.InvariantCulture),
 
-                                //Valor posicion 1
-                                Valor = textoArray[1],
+                                //Numero posicion 1
+                                Numero = Convert.ToInt32(textoArray[1]),
 
                                 //Tipo posicion 2
                                 Tipo = Convert.ToInt32(textoArray[2]),
 
-                                //UnidadMedida posicion 3
-                                UnidadMedida = textoArray[3]
                             };
                         lista.Add(l);
                         }
