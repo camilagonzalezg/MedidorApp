@@ -28,27 +28,20 @@ namespace MedidorApp
 
         }
 
-        static void Find()
-        {
-            
-        }
 
 
-        //1.Pruebas
+        //Pruebas
         static bool Menu()
         {
             bool continuar = true;
             Console.WriteLine(" ");
-            Console.WriteLine("Presione 1 para mostrar lectura");
+            Console.WriteLine("Presione 1 para mostrar lecturas");
             Console.WriteLine(" ");
             string opcion = Console.ReadLine().Trim();
             switch (opcion)
             {
                 case "1":
                     MostrarLectura();
-                    break;
-                case "2":
-                    Find();
                     break;
             }
             return continuar;

@@ -55,7 +55,7 @@ namespace MedidorApp.Hilos
                 clienteSocket.Escribir("1 = Trafico");
                 clienteSocket.Escribir("0 = Consumo");
                 tipo = Convert.ToInt32(clienteSocket.Leer().Trim());
-            } while (tipo<0 || tipo>1);
+            } while (tipo < 0 || tipo > 1);
 
             //Crear objeto lectura
             Lectura l = new Lectura();
@@ -67,8 +67,12 @@ namespace MedidorApp.Hilos
             {
                 dalLectura.Save(l);
             }
+
+
+
+
             clienteSocket.CerrarConexion();
         }
-    
-    }       
+
+            }    
 }

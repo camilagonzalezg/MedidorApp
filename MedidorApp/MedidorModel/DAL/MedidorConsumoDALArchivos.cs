@@ -64,7 +64,7 @@ namespace MedidorModel.DAL
                         linea = reader.ReadLine();
                         if (linea != null)
                         {
-                            string[] textoArray = linea.Split(';');
+                            string[] textoArray = linea.Split('|');
                             MedidorConsumo mc = new MedidorConsumo()
                             {
                                 //NroSerie posicion 0

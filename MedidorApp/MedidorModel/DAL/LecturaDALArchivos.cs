@@ -56,12 +56,12 @@ namespace MedidorModel.DAL
                         if (linea != null)
                         {
                             //En la lectura, leer la separacion 
-                            string[] textoArray = linea.Split(';');
+                            string[] textoArray = linea.Split('|');
 
                             Lectura l = new Lectura()
                             {
                                 //Fecha posicion 0
-                                Fecha = DateTime.ParseExact(textoArray[0], "dd/MM/yyyy HH:mm:ss", 
+                                Fecha = DateTime.ParseExact(textoArray[0], "dd-MM-yyyy HH:mm:ss", 
                                 CultureInfo.InvariantCulture),
 
                                 //Numero posicion 1
@@ -98,5 +98,6 @@ namespace MedidorModel.DAL
                 
             }
         }
+
     }
 }

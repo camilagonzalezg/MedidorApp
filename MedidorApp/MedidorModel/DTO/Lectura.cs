@@ -82,7 +82,7 @@ namespace MedidorModel.DTO
 
         public override string ToString()
         {
-            return Fecha + ";" + Numero + ";" + Tipo;
+            return Fecha + "|" + Numero + "|" + Tipo;
         }
 
     }

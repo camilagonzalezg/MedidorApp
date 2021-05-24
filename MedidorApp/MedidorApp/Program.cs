@@ -43,7 +43,7 @@ namespace MedidorApp
             dal2.Save(mc1);
 
             Console.WriteLine(" ");
-            Console.WriteLine("Iniciando hilo del Server");
+            Console.WriteLine("(Mediciones Creadas - Iniciando hilo del Server)");
             int puerto = int.Parse(ConfigurationManager.AppSettings["puerto"]);
             HiloServer hiloServer = new HiloServer(puerto);
             Thread t = new Thread(new ThreadStart(hiloServer.Ejecutar));
@@ -54,5 +54,7 @@ namespace MedidorApp
             t.Start();
             while (Menu());
         }
+
+        }
     }
-}
+

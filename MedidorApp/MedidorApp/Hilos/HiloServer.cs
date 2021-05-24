@@ -21,6 +21,7 @@ namespace MedidorApp.Hilos
         //Levantar servidor de tipo socket
         public void Ejecutar()
         {
+            Console.WriteLine(" ");
             Console.WriteLine("Iniciando servidor en puerto {0}", puerto);
             this.server = new ServerSocket(puerto);
             if (this.server.Iniciar())

@@ -79,14 +79,9 @@ namespace MedidorModel.DTO
             }
         }
 
-        public bool enviarLectura()
+        public void EnviarLectura(Lectura l)
         {
-            //if ()
-            //{
-                return true;
-            //} else {
-            //return false;
-            //}
+
         }
 
     }

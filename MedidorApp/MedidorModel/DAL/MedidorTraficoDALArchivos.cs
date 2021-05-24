@@ -46,7 +46,7 @@ namespace MedidorModel.DAL
                         linea = reader.ReadLine();
                         if (linea != null)
                         {
-                            string[] textoArray = linea.Split(';');
+                            string[] textoArray = linea.Split('|');
                             MedidorTrafico mt = new MedidorTrafico()
                             {
                                 //NroSerie posicion 0
@@ -94,5 +94,6 @@ namespace MedidorModel.DAL
 
             }
         }
+
     }
 }
